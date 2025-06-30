@@ -5,7 +5,7 @@ if [ -z "$MMDEBSTRAP" ]; then
 fi
 
 if [ -z "$MIRROR" ]; then
-    MIRROR="http://ftp.debian.org"
+    MIRROR="http://deb.debian.org"
     # MIRROR="http://mirrors.aliyun.com"
 fi
 
