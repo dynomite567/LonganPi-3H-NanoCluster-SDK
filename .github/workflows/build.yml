@@ -30,8 +30,6 @@ jobs:
           repository: pengutronix/genimage
           path: genimage
           ref: v17
-          token: ${{ secrets.GH_TOKEN }}
-          github-server-url: https://github.com/
           
       - name: build genimage
         run: |
