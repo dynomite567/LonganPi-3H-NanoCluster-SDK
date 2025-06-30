@@ -17,7 +17,7 @@ resize2fs /dev/mmcblk0p1
 resize2fs /dev/mmcblk1p1
 
 # dont use buggy systemd-resolved
-echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+echo "nameserver 9.9.9.10" >> /etc/resolv.conf
 
 # generate locale data
 echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
@@ -42,7 +42,7 @@ dpkg-reconfigure openssh-server
 systemctl enable rc-local
 
 # change the timezone
-timedatectl set-timezone Asia/Shanghai
+timedatectl set-timezone America/Los_Angeles
 
 # get time from network
 systemctl enable systemd-timesyncd

@@ -27,7 +27,7 @@ BASE_PACKAGE="ca-certificates locales dosfstools binutils file \
     bluez bluez-hcidump bluez-tools btscanner bluez-alsa-utils \
     device-tree-compiler debian-archive-keyring linux-cpupower \
     network-manager exfatprogs cloud-guest-utils xfsprogs rsync neovim \
-    xz-utils curl"
+    xz-utils curl git"
 
 if [ -z "$DESKTOP_PACKAGE" ]; then
     DESKTOP_PACKAGE="chromium task-xfce-desktop \
@@ -92,11 +92,6 @@ deb ${MIRROR}/debian/ ${CODENAME}-updates main contrib non-free non-free-firmwar
         --customize-hook='chroot "$1" systemctl disable avahi-daemon.service' \
         --customize-hook='cp overlay/etc/systemd/system/prekvm.service "$1/etc/systemd/system/"' \
         --customize-hook='chroot "$1" systemctl enable prekvm' \
-        --customize-hook='chroot "$1" mkdir -p --mode=0755 /usr/share/keyrings' \
-        --customize-hook='chroot "$1" sh -c "curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.noarmor.gpg | tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null"' \
-        --customize-hook='chroot "$1" sh -c "curl -fsSL https://pkgs.tailscale.com/stable/debian/bookworm.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list"' \
-        --customize-hook='chroot "$1" apt update' \
-        --customize-hook='chroot "$1" sh -c "apt install -y tailscale=1.80.3"' \
         --include="${BASE_PACKAGE} ${DESKTOP_PACKAGE} ${KVM_PACKAGE} ${USER_PACKAGE}" >./build/rootfs.tar
 }
 
