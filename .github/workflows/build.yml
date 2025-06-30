@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           retention-days: 30
-          name: lpi3h-arm64-nogui-${{ github.run_id }}
+          name: lpi3h-arm64-${{ github.run_id }}
           path: |
                   *.xz
                   *.sha512
