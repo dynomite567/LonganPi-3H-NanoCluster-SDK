@@ -30,6 +30,7 @@ jobs:
           repository: pengutronix/genimage
           path: genimage
           ref: v17
+          github-server-url: https://github.com
           
       - name: build genimage
         run: |
