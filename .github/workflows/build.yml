@@ -99,5 +99,5 @@ jobs:
           draft: false
           prerelease: false
           artifacts: "*.zip"
-          name: Lpi3H-${{ steps.date.outputs.date }}
+          name: v${{ steps.date.outputs.date }}
           tag: v${{ steps.date.outputs.date }}

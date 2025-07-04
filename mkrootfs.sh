@@ -38,7 +38,7 @@ fi
 
 if [ -z "$KVM_PACKAGE" ]; then
     KVM_PACKAGE="nginx bc expect v4l-utils iptables nfs-common dialog \
-    iptables dnsmasq git tesseract-ocr tesseract-ocr-eng libasound2-dev \
+    iptables dnsmasq tesseract-ocr tesseract-ocr-eng libasound2-dev \
     libsndfile-dev libspeexdsp-dev libdrm-dev libdbus-1-dev libglib2.0-dev \
     libsystemd-dev libevent-pthreads-2.1-7 libgssdp-1.6-0 libgupnp-1.6-0 \
     libgupnp-igd-1.0-4 liblua5.3-0 libmicrohttpd12 libnanomsg5 libnice10 \
