@@ -9,9 +9,10 @@ jobs:
   build:
     environment:
       CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
-    docker:
-    - image: cimg/base:current-22.04
-    resource_class: medium
+    machine:
+      image: ubuntu-2204:2024.11.1
+    resource_class: large
+    
     steps:
     - checkout:
         path: LonganPi-3H-SDK
