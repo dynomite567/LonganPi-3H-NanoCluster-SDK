@@ -11,9 +11,12 @@ jobs:
       CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
     docker:
     - image: cimg/base:current-22.04
+    resource_class: medium
     steps:
-    - checkout
+    - checkout:
+        path: LonganPi-3H-SDK
     - set_environment_vars
+    
     - run:
         name: Install Software
         command: |
