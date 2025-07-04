@@ -1,6 +1,6 @@
 # LonganPi-3H-SDK for NanoCluster
 
-[![mkimg-lpi3h-ci](https://github.com/dynomite567/LonganPi-3H-SDK/actions/workflows/build.yml/badge.svg)](https://github.com/dynomite567/LonganPi-3H-SDK/actions/workflows/build.yml)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/QdmNa8ANx1ffexCBKDunDj/U2SfHaPZBLQpBdxUWkxz1Y/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/QdmNa8ANx1ffexCBKDunDj/U2SfHaPZBLQpBdxUWkxz1Y/tree/main)
 
 **Cloned from [sipeed/LonganPi-3H-SDK](https://github.com/sipeed/LonganPi-3H-SDK)**
 
