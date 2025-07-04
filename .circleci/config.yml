@@ -10,7 +10,7 @@ jobs:
     environment:
       CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
     docker:
-    - image: ubuntu:20.04
+    - image: ubuntu:22.04
     steps:
     - checkout
     - set_environment_vars
