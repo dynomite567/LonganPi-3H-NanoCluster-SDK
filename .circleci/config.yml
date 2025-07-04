@@ -17,8 +17,8 @@ jobs:
     - run:
         name: Install Software
         command: |
-          sudo apt update && \
-          sudo apt install -y qemu-user-static gcc-aarch64-linux-gnu \
+          apt update && \
+          apt install -y sudo qemu-user-static gcc-aarch64-linux-gnu \
           mmdebstrap git binfmt-support make build-essential bison \
           flex make gcc libncurses-dev debian-archive-keyring swig \
           libssl-dev bc python3-setuptools python3-dev libconfuse-dev \
@@ -77,6 +77,7 @@ jobs:
           sudo zip "lpi3h-xfce-${DATE}.zip" *.xz *.sha512
           sudo rm *.xz *.sha512
           sudo rm -rf LonganPi-3H-SDK
+
     - store_artifacts:
         path: lpi3h-nogui-${DATE}.zip
           
