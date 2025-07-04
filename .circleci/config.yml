@@ -31,7 +31,7 @@ jobs:
     
     - run:
         name: Set date
-        command: DATE=$(date +"%Y%m%d")
+        command: echo "export DATE=`date +%Y%m%d`" >> $BASH_ENV
     
     - run:
         name: Clone genimage
