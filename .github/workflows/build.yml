@@ -72,7 +72,7 @@ jobs:
             popd
             sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
             sudo zip "lpi3h-nogui-${{ steps.date.outputs.date }}.zip" *.xz *.sha512
-            sudo rm *.xz *.sha512 *.img
+            sudo rm *.xz *.sha512
       
       - name: Build XFCE image
         run: |
@@ -89,7 +89,7 @@ jobs:
             popd
             sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
             sudo zip "lpi3h-xfce-${{ steps.date.outputs.date }}.zip" *.xz *.sha512
-            sudo rm *.xz *.sha512 *.img
+            sudo rm *.xz *.sha512
             sudo rm -rf LonganPi-3H-SDK
       
       - name: Create Release
