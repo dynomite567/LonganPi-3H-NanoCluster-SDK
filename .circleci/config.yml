@@ -11,7 +11,7 @@ jobs:
       CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
     machine:
       image: ubuntu-2204:2024.11.1
-    resource_class: large
+    resource_class: medium
     
     steps:
     - checkout:
