@@ -1,13 +1,16 @@
-# LonganPi-3H-SDK
+# LonganPi-3H-SDK for NanoCluster
 
-# Prebuild Download
+[![mkimg-lpi3h-ci](https://github.com/dynomite567/LonganPi-3H-SDK/actions/workflows/build.yml/badge.svg)](https://github.com/dynomite567/LonganPi-3H-SDK/actions/workflows/build.yml)
 
-latest build: <https://github.com/sipeed/LonganPi-3H-SDK/actions>
+**Cloned from [sipeed/LonganPi-3H-SDK](https://github.com/sipeed/LonganPi-3H-SDK)**
 
-Scripts and blobs for LonganPi 3H image build.
-> Tested on Ubuntu 22.04.2 LTS and WSL2 Ubuntu-22.04
+[Download Latest Build](https://github.com/dynomite567/LonganPi-3H-SDK/releases/latest)
 
-0. Install some dependencies
+Scripts and blobs for building a LonganPi 3H image for the NanoCluster.
+
+Builds are triggered manually when needed.
+
+0. Install dependencies
 
 ```shell
 sudo apt update
@@ -32,13 +35,13 @@ sudo apt install qemu-user-static gcc-aarch64-linux-gnu mmdebstrap git binfmt-su
 ./mklinux.sh
 ```
 
-4. add extra files for longanpi3h
+4. Add extra files for LonganPi 3H
 
 ```shell
 ./mkoverlay.sh
 ```
 
-5. Build debian rootfs
+5. Build Debian rootfs
 
 ```shell
 ./mkrootfs.sh
