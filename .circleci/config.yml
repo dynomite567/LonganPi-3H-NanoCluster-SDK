@@ -51,7 +51,7 @@ jobs:
     - run:
         name: Build
         command: |
-          sudo apt remove python
+          sudo apt remove python -y
           pushd LonganPi-3H-SDK
               git config --global user.email "nop@nop.nop"
               git config --global user.name "nop"
