@@ -1,0 +1,89 @@
+version: 2.1
+commands:
+  set_environment_vars:
+    steps:
+    - run:
+        command: |
+          echo "export ARCH=arm64" >> $BASH_ENV
+jobs:
+  prepare:
+    environment:
+      CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
+    docker:
+    - image: ubuntu:20.04
+    steps:
+    - checkout
+    - set_environment_vars
+    - run:
+        name: Install Software
+        command: |
+          sudo apt update && \
+          sudo apt install -y qemu-user-static gcc-aarch64-linux-gnu \
+          mmdebstrap git binfmt-support make build-essential bison \
+          flex make gcc libncurses-dev debian-archive-keyring swig \
+          libssl-dev bc python3-setuptools python3-dev libconfuse-dev \
+          debhelper fuse2fs rsync kmod cpio debian-keyring fuse ccache \
+          zip ca-certificates
+    - run:
+        command: echo "date=$(date +"%Y%m%d")" >> $GITHUB_OUTPUT
+    - run:
+        name: build genimage
+        command: |
+          pushd genimage
+              ./autogen.sh
+              ./configure
+              make -j$(nproc)
+              sudo make install
+          popd
+    - run:
+        name: Build
+        command: |
+          pushd LonganPi-3H-SDK
+              git config --global user.email "nop@nop.nop"
+              git config --global user.name "nop"
+              export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
+              sh mkatf.sh
+              sh mkuboot.sh
+              sh mklinux.sh
+              sh mkoverlay.sh
+              sudo sh mkrootfs.sh nogui
+              sudo sh mkimage.sh
+          popd
+    - run:
+        name: Make Checksum file & Compress files
+        command: |
+          pushd LonganPi-3H-SDK
+              sudo xz -z -v -9 -T $(nproc) build/images/sdcard.img
+              sudo mv build/images/* ../
+          popd
+          sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
+          sudo zip "lpi3h-cli-${{ steps.date.outputs.date }}.zip" *.xz *.sha512
+          sudo rm *.xz *.sha512
+    - run:
+        name: Build XFCE image
+        command: |
+          pushd LonganPi-3H-SDK
+              sudo sh mkrootfs.sh
+              sudo sh mkimage.sh
+          popd
+    - run:
+        name: Make Checksum file & Compress files & Clean
+        command: |
+          pushd LonganPi-3H-SDK
+              sudo xz -z -v -9 -T $(nproc) build/images/sdcard.img
+              sudo mv build/images/* ../
+          popd
+          sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
+          sudo zip "lpi3h-xfce-${{ steps.date.outputs.date }}.zip" *.xz *.sha512
+          sudo rm *.xz *.sha512
+          sudo rm -rf LonganPi-3H-SDK
+    - store_artifacts:
+        path: lpi3h-nogui-${{ steps.date.outputs.date }}.zip
+          
+    - store_artifacts:
+        path: lpi3h-xfce-${{ steps.date.outputs.date }}.zip
+          
+workflows:
+  mkimg-lpi3h-ci:
+    jobs:
+    - prepare
