@@ -55,7 +55,6 @@ jobs:
               python3 -m pip install -U pip setuptools 
               git config --global user.email "nop@nop.nop"
               git config --global user.name "nop"
-              export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
               sh mkatf.sh
               sh mkuboot.sh
               sh mklinux.sh
@@ -100,7 +99,14 @@ jobs:
           
     - store_artifacts:
         path: lpi3h-xfce-${DATE}.zip
-          
+    
+    - run:
+          name: "Publish Release on GitHub"
+          command: |
+            mkdir artifacts && mv lpi3h-*.zip artifacts/
+            go get github.com/tcnksm/ghr
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} \
+            -c ${CIRCLE_SHA1} -delete v${DATE} ./artifacts/
 workflows:
   mkimg-lpi3h-ci:
     jobs:
