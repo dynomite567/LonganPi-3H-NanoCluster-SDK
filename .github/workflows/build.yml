@@ -92,12 +92,6 @@ jobs:
             sudo rm *.xz *.sha512
             sudo rm -rf LonganPi-3H-SDK
 
-      - name: Changelog
-        uses: scottbrenner/generate-changelog-action@master
-        id: Changelog
-        env:
-          REPO: ${{ github.repository }}
-
       - name: Create Release
         uses: ncipollo/release-action@v1.18.0
         id: create_release
