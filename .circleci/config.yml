@@ -17,8 +17,8 @@ jobs:
     - run:
         name: Install Software
         command: |
-          apt update && \
-          apt install -y sudo qemu-user-static gcc-aarch64-linux-gnu \
+          sudo apt update && \
+          sudo apt install -y sudo qemu-user-static gcc-aarch64-linux-gnu \
           mmdebstrap git binfmt-support make build-essential bison \
           flex make gcc libncurses-dev debian-archive-keyring swig \
           libssl-dev bc python3-setuptools python3-dev libconfuse-dev \
