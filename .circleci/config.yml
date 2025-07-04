@@ -25,7 +25,7 @@ jobs:
           debhelper fuse2fs rsync kmod cpio debian-keyring fuse ccache \
           zip ca-certificates
     - run:
-        command: echo "date=$(date +"%Y%m%d")" >> $GITHUB_OUTPUT
+        command: DATE=$(date +"%Y%m%d")
     - run:
         name: build genimage
         command: |
@@ -57,7 +57,7 @@ jobs:
               sudo mv build/images/* ../
           popd
           sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
-          sudo zip "lpi3h-cli-${{ steps.date.outputs.date }}.zip" *.xz *.sha512
+          sudo zip "lpi3h-cli-${DATE}.zip" *.xz *.sha512
           sudo rm *.xz *.sha512
     - run:
         name: Build XFCE image
@@ -74,16 +74,16 @@ jobs:
               sudo mv build/images/* ../
           popd
           sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
-          sudo zip "lpi3h-xfce-${{ steps.date.outputs.date }}.zip" *.xz *.sha512
+          sudo zip "lpi3h-xfce-${DATE}.zip" *.xz *.sha512
           sudo rm *.xz *.sha512
           sudo rm -rf LonganPi-3H-SDK
     - store_artifacts:
-        path: lpi3h-nogui-${{ steps.date.outputs.date }}.zip
+        path: lpi3h-nogui-${DATE}.zip
           
     - store_artifacts:
-        path: lpi3h-xfce-${{ steps.date.outputs.date }}.zip
+        path: lpi3h-xfce-${DATE}.zip
           
 workflows:
   mkimg-lpi3h-ci:
     jobs:
-    - prepare
+    - build
