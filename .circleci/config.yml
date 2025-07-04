@@ -10,7 +10,7 @@ jobs:
     environment:
       CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
     docker:
-    - image: ubuntu:22.04
+    - image: cimg/base:current-22.04
     steps:
     - checkout
     - set_environment_vars
@@ -23,7 +23,7 @@ jobs:
           flex make gcc libncurses-dev debian-archive-keyring swig \
           libssl-dev bc python3-setuptools python3-dev libconfuse-dev \
           debhelper fuse2fs rsync kmod cpio debian-keyring fuse ccache \
-          zip ca-certificates
+          zip ca-certificates pkg-config
     
     - run:
         name: Set date
