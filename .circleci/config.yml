@@ -22,12 +22,12 @@ jobs:
         name: Install Software
         command: |
           sudo apt update && \
-          sudo apt install -y sudo qemu-user-static gcc-aarch64-linux-gnu \
-          mmdebstrap git binfmt-support make build-essential bison \
-          flex make gcc libncurses-dev debian-archive-keyring swig \
-          libssl-dev bc python3-setuptools python3-dev libconfuse-dev \
-          debhelper fuse2fs rsync kmod cpio debian-keyring fuse ccache \
-          zip ca-certificates pkg-config
+          sudo NEEDRESTART_MODE=a apt install -y sudo qemu-user-static \
+          gcc-aarch64-linux-gnu mmdebstrap git binfmt-support make \
+          build-essential bison flex make gcc libncurses-dev \
+          debian-archive-keyring swig libssl-dev bc python3-setuptools \
+          python3-dev libconfuse-dev debhelper fuse2fs rsync kmod cpio \
+          debian-keyring fuse ccache zip ca-certificates pkg-config
     
     - run:
         name: Set date
