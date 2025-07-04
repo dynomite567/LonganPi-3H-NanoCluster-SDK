@@ -24,10 +24,10 @@ jobs:
           sudo apt update && \
           sudo NEEDRESTART_MODE=a apt install -y sudo qemu-user-static \
           gcc-aarch64-linux-gnu mmdebstrap git binfmt-support make \
-          build-essential bison flex make gcc libncurses-dev python-is-python3 \
-          debian-archive-keyring swig libssl-dev bc python3-setuptools \
+          build-essential bison flex make gcc libncurses-dev genimage \
+          debian-archive-keyring swig libssl-dev bc python3-pip python3-setuptools \
           python3-dev libconfuse-dev debhelper fuse2fs rsync kmod cpio \
-          debian-keyring fuse ccache zip ca-certificates pkg-config
+          debian-keyring fuse ccache zip ca-certificates pkg-config exfatprogs
     
     - run:
         name: Set date
@@ -51,6 +51,7 @@ jobs:
     - run:
         name: Build
         command: |
+          sudo apt remove python
           pushd LonganPi-3H-SDK
               git config --global user.email "nop@nop.nop"
               git config --global user.name "nop"
