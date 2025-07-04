@@ -24,8 +24,16 @@ jobs:
           libssl-dev bc python3-setuptools python3-dev libconfuse-dev \
           debhelper fuse2fs rsync kmod cpio debian-keyring fuse ccache \
           zip ca-certificates
+    
     - run:
+        name: Set date
         command: DATE=$(date +"%Y%m%d")
+    
+    - run:
+        name: Clone genimage
+        command: |
+          git clone -b v17 https://github.com/pengutronix/genimage.git
+
     - run:
         name: build genimage
         command: |
@@ -35,6 +43,7 @@ jobs:
               make -j$(nproc)
               sudo make install
           popd
+    
     - run:
         name: Build
         command: |
@@ -49,6 +58,7 @@ jobs:
               sudo sh mkrootfs.sh nogui
               sudo sh mkimage.sh
           popd
+    
     - run:
         name: Make Checksum file & Compress files
         command: |
@@ -59,6 +69,7 @@ jobs:
           sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
           sudo zip "lpi3h-cli-${DATE}.zip" *.xz *.sha512
           sudo rm *.xz *.sha512
+    
     - run:
         name: Build XFCE image
         command: |
@@ -66,6 +77,7 @@ jobs:
               sudo sh mkrootfs.sh
               sudo sh mkimage.sh
           popd
+    
     - run:
         name: Make Checksum file & Compress files & Clean
         command: |
