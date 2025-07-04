@@ -6,7 +6,7 @@ commands:
         command: |
           echo "export ARCH=arm64" >> $BASH_ENV
 jobs:
-  prepare:
+  build:
     environment:
       CREATE_TARBALL: LonganPi-3H-SDK/build/rootfs.tar
     docker:
