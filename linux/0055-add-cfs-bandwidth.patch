@@ -1,0 +1,24 @@
+From d9459da4a7759b1e4c71e2717bcb1eee556c9bec Mon Sep 17 00:00:00 2001
+From: dynomite567 <17055345+dynomite567@users.noreply.github.com>
+Date: Fri, 4 Jul 2025 00:10:43 +0000
+Subject: [PATCH] add cfs bandwidth
+
+---
+ arch/arm64/configs/longanpi_3h_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/configs/longanpi_3h_defconfig b/arch/arm64/configs/longanpi_3h_defconfig
+index 7160784d2..1080af170 100644
+--- a/arch/arm64/configs/longanpi_3h_defconfig
++++ b/arch/arm64/configs/longanpi_3h_defconfig
+@@ -10,6 +10,7 @@ CONFIG_IKCONFIG=y
+ CONFIG_LOG_CPU_MAX_BUF_SHIFT=17
+ CONFIG_MEMCG=y
+ CONFIG_BLK_CGROUP=y
++CONFIG_CFS_BANDWIDTH=y
+ CONFIG_CGROUP_PIDS=y
+ CONFIG_CGROUP_FREEZER=y
+ CONFIG_CPUSETS=y
+-- 
+2.49.0
+
