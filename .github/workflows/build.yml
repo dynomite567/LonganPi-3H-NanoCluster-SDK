@@ -100,4 +100,4 @@ jobs:
           prerelease: false
           artifacts: "*.zip"
           name: Lpi3H-${{ steps.date.outputs.date }}
-          tag: ${{ github.ref }}
+          tag: v${{ steps.date.outputs.date }}
