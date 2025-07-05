@@ -100,7 +100,7 @@ jobs:
           command: |
             go install github.com/tcnksm/ghr@latest
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} \
-            -c ${CIRCLE_SHA1} -latest "v${DATE}" ./artifacts/
+            -c ${CIRCLE_SHA1} -latest auto -delete "v${DATE}" ./artifacts/
  
 workflows:
   mkimg-lpi3h-ci:
