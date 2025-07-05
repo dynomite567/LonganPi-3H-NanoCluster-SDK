@@ -1,6 +1,6 @@
 # LonganPi-3H-SDK for NanoCluster
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/QdmNa8ANx1ffexCBKDunDj/U2SfHaPZBLQpBdxUWkxz1Y/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/QdmNa8ANx1ffexCBKDunDj/U2SfHaPZBLQpBdxUWkxz1Y/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/QdmNa8ANx1ffexCBKDunDj/KrPjqbmnGuz2hAeWTtLrVZ/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/QdmNa8ANx1ffexCBKDunDj/KrPjqbmnGuz2hAeWTtLrVZ/tree/main)
 
 **Cloned from [sipeed/LonganPi-3H-SDK](https://github.com/sipeed/LonganPi-3H-SDK)**
 
