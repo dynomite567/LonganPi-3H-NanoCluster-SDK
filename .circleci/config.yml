@@ -70,7 +70,7 @@ jobs:
 
     - run:
         name: Build CLI image
-        command:
+        command: |
           pushd LonganPi-3H-SDK
               sh mkoverlay.sh
               sudo sh mkrootfs.sh nogui
