@@ -61,6 +61,7 @@ jobs:
           ccache --set-config=compression=true
           ccache -p
           ccache -z
+          sudo /usr/sbin/update-ccache-symlinks
 
     - run:
         name: Build Linux kernel
@@ -69,11 +70,13 @@ jobs:
               python3 -m pip install -U pip setuptools 
               git config --global user.email "nop@nop.nop"
               git config --global user.name "nop"
+              export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
               sh mkatf.sh
               sh mkuboot.sh
               sh mklinux.sh
           popd
           echo $CACHE_DATE > /tmp/cache_date
+          ccache -s
 
     - save_cache:
         key: kernel-ccache-{{ checksum "/tmp/cache_date" }}
