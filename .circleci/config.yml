@@ -100,7 +100,7 @@ jobs:
               sudo mv build/images/* ../
           popd
           sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
-          sudo zip "lpi3h-cli-${DATE}.zip" *.xz *.sha512
+          sudo zip "lm3h-cli-${DATE}.zip" *.xz *.sha512
           sudo rm *.xz *.sha512
     
     - run:
@@ -119,10 +119,10 @@ jobs:
               sudo mv build/images/* ../
           popd
           sudo sha512sum sdcard.img.xz > sdcard.img.xz.sha512
-          sudo zip "lpi3h-xfce-${DATE}.zip" *.xz *.sha512
+          sudo zip "lm3h-xfce-${DATE}.zip" *.xz *.sha512
           sudo rm *.xz *.sha512
           sudo rm -rf LonganPi-3H-SDK
-          mkdir artifacts && mv lpi3h-*.zip artifacts/
+          mkdir artifacts && mv lm3h-*.zip artifacts/
     
     - run:
           name: "Publish Release on GitHub"
