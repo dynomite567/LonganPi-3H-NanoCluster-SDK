@@ -39,7 +39,7 @@ jobs:
           git clone -b v17 https://github.com/pengutronix/genimage.git
 
     - run:
-        name: build genimage
+        name: Build genimage
         command: |
           pushd genimage
               ./autogen.sh
@@ -48,8 +48,11 @@ jobs:
               sudo make install
           popd
     
+    - restore_cache:
+        keys: LPI3H-kernel-cache
+
     - run:
-        name: Build
+        name: Build Linux kernel
         command: |
           pushd LonganPi-3H-SDK
               python3 -m pip install -U pip setuptools 
@@ -58,6 +61,17 @@ jobs:
               sh mkatf.sh
               sh mkuboot.sh
               sh mklinux.sh
+          popd
+
+    - save_cache:
+        key: LPI3H-kernel-cache
+        paths:
+          - LonganPi-3H-SDK/build
+
+    - run:
+        name: Build CLI image
+        command:
+          pushd LonganPi-3H-SDK
               sh mkoverlay.sh
               sudo sh mkrootfs.sh nogui
               sudo sh mkimage.sh
