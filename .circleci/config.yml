@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  ccache: dynomite567/ccache@1.0.0
 commands:
   set_environment_vars:
     steps:
@@ -40,6 +42,9 @@ jobs:
         command: |
           git clone -b v17 https://github.com/pengutronix/genimage.git
 
+   - ccache/restore:
+        path: /home/circleci/project/LonganPi-3H-SDK
+
     - run:
         name: Build genimage
         command: |
@@ -49,19 +54,6 @@ jobs:
               make -j$(nproc)
               sudo make install
           popd
-    
-    - restore_cache:
-        keys: kernel-ccache-
-
-    - run:
-        name: Set ccache
-        command: |
-          ccache --set-config=cache_dir='/home/circleci/project/LonganPi-3H-SDK/.ccache'
-          ccache --set-config=max_size='500M'
-          ccache --set-config=compression=true
-          ccache -p
-          ccache -z
-          sudo /usr/sbin/update-ccache-symlinks
 
     - run:
         name: Build Linux kernel
@@ -78,10 +70,8 @@ jobs:
           echo $CACHE_DATE > /tmp/cache_date
           ccache -s
 
-    - save_cache:
-        key: kernel-ccache-{{ checksum "/tmp/cache_date" }}
-        paths:
-          - LonganPi-3H-SDK/.ccache
+    - ccache/save:
+        path: /home/circleci/project/LonganPi-3H-SDK
 
     - run:
         name: Build CLI image
