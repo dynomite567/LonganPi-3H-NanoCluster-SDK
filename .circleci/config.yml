@@ -31,7 +31,9 @@ jobs:
     
     - run:
         name: Set date
-        command: echo "export DATE=`date +%Y%m%d`" >> $BASH_ENV
+        command: |
+          echo "export DATE=`date +%Y%m%d`" >> $BASH_ENV
+          echo "export CACHE_DATE=`date +%Y-%m-%dT%H:%M:%S" >> $BASH_ENV
     
     - run:
         name: Clone genimage
@@ -49,7 +51,16 @@ jobs:
           popd
     
     - restore_cache:
-        keys: LPI3H-kernel-cache
+        keys: kernel-ccache-
+
+    - run:
+        name: Set ccache
+        command: |
+          ccache --set-config=cache_dir='/home/circleci/project/LonganPi-3H-SDK/.ccache'
+          ccache --set-config=max_size='500M'
+          ccache --set-config=compression=true
+          ccache -p
+          ccache -z
 
     - run:
         name: Build Linux kernel
@@ -62,11 +73,12 @@ jobs:
               sh mkuboot.sh
               sh mklinux.sh
           popd
+          echo $CACHE_DATE > /tmp/cache_date
 
     - save_cache:
-        key: LPI3H-kernel-cache
+        key: kernel-ccache-{{ checksum "/tmp/cache_date" }}
         paths:
-          - LonganPi-3H-SDK/build
+          - LonganPi-3H-SDK/.ccache
 
     - run:
         name: Build CLI image
