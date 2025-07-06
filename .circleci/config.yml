@@ -42,7 +42,7 @@ jobs:
         command: |
           git clone -b v17 https://github.com/pengutronix/genimage.git
 
-   - ccache/restore:
+    - ccache/restore:
         path: /home/circleci/project/LonganPi-3H-SDK
 
     - run:
