@@ -35,7 +35,6 @@ jobs:
         name: Set date
         command: |
           echo "export DATE=`date +%Y%m%d`" >> $BASH_ENV
-          echo "export CACHE_DATE=`date +%Y-%m-%dT%H:%M:%S`" >> $BASH_ENV
     
     - run:
         name: Clone genimage
@@ -67,8 +66,6 @@ jobs:
               sh mkuboot.sh
               sh mklinux.sh
           popd
-          echo $CACHE_DATE > /tmp/cache_date
-          ccache -s
 
     - ccache/save:
         path: /home/circleci/project/LonganPi-3H-SDK
