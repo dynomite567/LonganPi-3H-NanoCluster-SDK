@@ -4,7 +4,7 @@
 
 **Cloned from [sipeed/LonganPi-3H-SDK](https://github.com/sipeed/LonganPi-3H-SDK)**
 
-[Download Latest Build](https://github.com/dynomite567/LonganPi-3H-SDK/releases/latest)
+[Download Latest Build](https://github.com/dynomite567/LonganPi-3H-NanoCluster-SDK/releases/latest)
 
 Scripts and blobs for building a LonganPi 3H image for the NanoCluster.
 
