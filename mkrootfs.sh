@@ -27,7 +27,7 @@ BASE_PACKAGE="ca-certificates locales dosfstools binutils file \
     bluez bluez-hcidump bluez-tools btscanner bluez-alsa-utils \
     device-tree-compiler debian-archive-keyring linux-cpupower \
     network-manager exfatprogs cloud-guest-utils xfsprogs rsync neovim \
-    xz-utils curl git connman"
+    xz-utils curl git"
 
 if [ -z "$DESKTOP_PACKAGE" ]; then
     DESKTOP_PACKAGE="chromium task-xfce-desktop \
