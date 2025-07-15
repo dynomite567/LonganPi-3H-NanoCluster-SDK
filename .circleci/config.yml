@@ -111,12 +111,10 @@ jobs:
           sudo rm -rf LonganPi-3H-SDK
           mkdir artifacts && mv lm3h-*.zip artifacts/
     
-    - run:
-          name: "Publish Release on GitHub"
-          command: |
-            go install github.com/tcnksm/ghr@latest
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} \
-            -c ${CIRCLE_SHA1} "v${DATE}" ./artifacts/
+      - github-release/create:
+          tag: v${DATE}
+          title: Version v${DATE}
+          file-path: ./artifacts/
  
 workflows:
   mkimg-lpi3h-ci:
