@@ -115,6 +115,7 @@ jobs:
     - github-release/create:
         tag: v${DATE}
         title: Version v${DATE}
+        repository: LonganPi-3H-NanoCluster-SDK
         file-path: ./artifacts/
  
 workflows:
