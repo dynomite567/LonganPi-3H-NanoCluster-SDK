@@ -36,6 +36,7 @@ jobs:
         name: Set date
         command: |
           echo "export DATE=`date +%Y%m%d`" >> $BASH_ENV
+          echo "export DATEL=`date +%Y/%m/%d`" >> $BASH_ENV
     
     - run:
         name: Clone genimage
@@ -115,6 +116,7 @@ jobs:
     - github-release/create:
         tag: v${DATE}
         title: Version v${DATE}
+        description: Image built on ${DATEL}
         repository: LonganPi-3H-NanoCluster-SDK
         file-path: ./artifacts/
  
