@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   ccache: dynomite567/ccache@1.0.1
-  github-release: h-matsuo/github-release@0.1.3
 commands:
   set_environment_vars:
     steps:
@@ -113,12 +112,12 @@ jobs:
           sudo rm -rf LonganPi-3H-SDK
           mkdir artifacts && mv lm3h-*.zip artifacts/
     
-    - github-release/create:
-        tag: v${DATE}
-        title: Version v${DATE}
-        description: Image built on ${DATEL}
-        repository: LonganPi-3H-NanoCluster-SDK
-        file-path: ./artifacts/
+    - run:
+          name: "Publish Release on GitHub"
+          command: |
+            go install github.com/tcnksm/ghr@latest
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r LonganPi-3H-NanoCluster-SDK \
+            -c ${CIRCLE_SHA1} -latest auto -delete "v${DATE}" ./artifacts/
  
 workflows:
   mkimg-lpi3h-ci:
